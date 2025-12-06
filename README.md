@@ -1,2 +1,0 @@
-# Ingredly
-Legal docs
