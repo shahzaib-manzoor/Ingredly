@@ -1,0 +1,494 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Account Deletion - Ingredly</title>
+    <style>
+      * {
+        padding: 0;
+        margin: 0;
+        box-sizing: border-box;
+      }
+
+      body {
+        font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto,
+          Oxygen, Ubuntu, Cantarell, sans-serif;
+        line-height: 1.8;
+        color: #333;
+        background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%);
+        min-height: 100vh;
+        padding: 20px;
+      }
+
+      .container {
+        max-width: 800px;
+        margin: 40px auto;
+        padding: 50px 40px;
+        background: white;
+        box-shadow: 0 10px 40px rgba(0, 0, 0, 0.1);
+        border-radius: 16px;
+      }
+
+      header {
+        text-align: center;
+        margin-bottom: 50px;
+        padding-bottom: 30px;
+        border-bottom: 3px solid #ff6b6b;
+      }
+
+      .logo {
+        font-size: 3em;
+        margin-bottom: 10px;
+      }
+
+      h1 {
+        font-size: 2.5em;
+        color: #2c3e50;
+        margin-bottom: 10px;
+      }
+
+      .subtitle {
+        color: #7f8c8d;
+        font-size: 1.1em;
+      }
+
+      h2 {
+        font-size: 1.8em;
+        color: #2c3e50;
+        margin-top: 40px;
+        margin-bottom: 20px;
+        padding-bottom: 10px;
+        border-bottom: 2px solid #ff6b6b;
+      }
+
+      h3 {
+        font-size: 1.4em;
+        color: #34495e;
+        margin-top: 30px;
+        margin-bottom: 15px;
+      }
+
+      p {
+        margin-bottom: 15px;
+        color: #555;
+        line-height: 1.8;
+      }
+
+      ul,
+      ol {
+        margin-left: 30px;
+        margin-bottom: 20px;
+      }
+
+      li {
+        margin-bottom: 12px;
+        color: #555;
+      }
+
+      .warning-box {
+        background-color: #fff3cd;
+        padding: 25px;
+        border-left: 5px solid #ffc107;
+        margin: 30px 0;
+        border-radius: 8px;
+      }
+
+      .warning-box h3 {
+        color: #856404;
+        margin-top: 0;
+        margin-bottom: 15px;
+      }
+
+      .warning-box ul {
+        margin-bottom: 0;
+      }
+
+      .info-box {
+        background-color: #e7f3ff;
+        padding: 25px;
+        border-left: 5px solid #2196F3;
+        margin: 30px 0;
+        border-radius: 8px;
+      }
+
+      .info-box h3 {
+        color: #0d47a1;
+        margin-top: 0;
+        margin-bottom: 15px;
+      }
+
+      .contact-box {
+        background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+        padding: 30px;
+        border-radius: 12px;
+        margin: 40px 0;
+        color: white;
+        text-align: center;
+      }
+
+      .contact-box h3 {
+        color: white;
+        margin-top: 0;
+        margin-bottom: 20px;
+        font-size: 1.6em;
+      }
+
+      .contact-box a {
+        display: inline-block;
+        background: white;
+        color: #667eea;
+        padding: 15px 40px;
+        text-decoration: none;
+        border-radius: 30px;
+        font-weight: bold;
+        font-size: 1.1em;
+        transition: transform 0.3s ease, box-shadow 0.3s ease;
+        margin: 10px;
+      }
+
+      .contact-box a:hover {
+        transform: translateY(-2px);
+        box-shadow: 0 5px 20px rgba(0, 0, 0, 0.2);
+      }
+
+      .email-link {
+        color: white;
+        text-decoration: underline;
+        font-weight: bold;
+      }
+
+      .steps {
+        counter-reset: step-counter;
+        list-style: none;
+        margin-left: 0;
+      }
+
+      .steps li {
+        counter-increment: step-counter;
+        padding-left: 60px;
+        position: relative;
+        margin-bottom: 25px;
+      }
+
+      .steps li::before {
+        content: counter(step-counter);
+        position: absolute;
+        left: 0;
+        top: 0;
+        background: #ff6b6b;
+        color: white;
+        width: 40px;
+        height: 40px;
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-weight: bold;
+        font-size: 1.2em;
+      }
+
+      strong {
+        color: #2c3e50;
+      }
+
+      .data-retention-table {
+        width: 100%;
+        border-collapse: collapse;
+        margin: 20px 0;
+      }
+
+      .data-retention-table th,
+      .data-retention-table td {
+        padding: 15px;
+        text-align: left;
+        border-bottom: 1px solid #ddd;
+      }
+
+      .data-retention-table th {
+        background-color: #ff6b6b;
+        color: white;
+        font-weight: bold;
+      }
+
+      .data-retention-table tr:hover {
+        background-color: #f8f9fa;
+      }
+
+      @media (max-width: 768px) {
+        .container {
+          padding: 30px 20px;
+        }
+
+        h1 {
+          font-size: 2em;
+        }
+
+        h2 {
+          font-size: 1.5em;
+        }
+
+        .steps li {
+          padding-left: 50px;
+        }
+
+        .steps li::before {
+          width: 35px;
+          height: 35px;
+          font-size: 1em;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <div class="container">
+      <header>
+        <div class="logo">🥗</div>
+        <h1>Account Deletion Request</h1>
+        <p class="subtitle">Ingredly App</p>
+      </header>
+
+      <p>
+        We understand that you may want to delete your Ingredly account and
+        associated data. This page outlines the process and what happens when
+        you request account deletion.
+      </p>
+
+      <h2>How to Request Account Deletion</h2>
+
+      <h3>Option 1: In-App Deletion (Recommended)</h3>
+      <ol class="steps">
+        <li>
+          <strong>Open the Ingredly app</strong> on your device
+        </li>
+        <li>
+          Navigate to <strong>Profile → Settings</strong>
+        </li>
+        <li>
+          Scroll down and tap <strong>"Delete Account"</strong>
+        </li>
+        <li>
+          Confirm your decision by entering your password
+        </li>
+        <li>
+          Your account and data will be permanently deleted immediately
+        </li>
+      </ol>
+
+      <h3>Option 2: Email Request</h3>
+      <p>
+        If you're unable to access the app, you can request account deletion by
+        contacting us:
+      </p>
+
+      <div class="contact-box">
+        <h3>📧 Contact Us for Account Deletion</h3>
+        <p>Send an email to:</p>
+        <a href="mailto:support@ingredly.com?subject=Account%20Deletion%20Request&body=Please%20delete%20my%20account%20and%20all%20associated%20data.%0A%0AEmail%3A%20%5Byour%20registered%20email%5D%0AName%3A%20%5Byour%20name%5D">
+          support@ingredly.com
+        </a>
+        <p style="margin-top: 20px; font-size: 0.9em;">
+          Include your registered email address and confirm you want your
+          account deleted
+        </p>
+      </div>
+
+      <p>
+        <strong>Subject:</strong> Account Deletion Request<br />
+        <strong>Include:</strong>
+      </p>
+      <ul>
+        <li>Your registered email address</li>
+        <li>Your full name (as registered in the app)</li>
+        <li>Confirmation that you want to delete your account and all data</li>
+      </ul>
+
+      <p>
+        We will process your request within <strong>7 business days</strong> and
+        send you a confirmation email once completed.
+      </p>
+
+      <div class="warning-box">
+        <h3>⚠️ Important: What Gets Deleted</h3>
+        <p>
+          When you delete your account, the following data will be
+          <strong>permanently removed</strong> and cannot be recovered:
+        </p>
+        <ul>
+          <li><strong>Account Information:</strong> Email, name, password</li>
+          <li>
+            <strong>Profile Data:</strong> Dietary preferences, allergen
+            information, health goals, age, gender, height, weight, activity
+            level
+          </li>
+          <li>
+            <strong>Scan History:</strong> All food scans and nutrition analyses
+          </li>
+          <li>
+            <strong>Meal Tracking:</strong> Complete meal history and nutrition
+            logs
+          </li>
+          <li>
+            <strong>Images:</strong> All uploaded food and label images
+          </li>
+          <li>
+            <strong>Subscription Data:</strong> Subscription status and payment
+            history (Note: active subscriptions must be cancelled separately
+            through Google Play Store or Apple App Store)
+          </li>
+        </ul>
+      </div>
+
+      <h2>Data Retention Details</h2>
+
+      <table class="data-retention-table">
+        <thead>
+          <tr>
+            <th>Data Type</th>
+            <th>Action Taken</th>
+            <th>Retention Period</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>Account Information</td>
+            <td>Permanently Deleted</td>
+            <td>Immediate</td>
+          </tr>
+          <tr>
+            <td>Profile & Health Data</td>
+            <td>Permanently Deleted</td>
+            <td>Immediate</td>
+          </tr>
+          <tr>
+            <td>Scan & Meal History</td>
+            <td>Permanently Deleted</td>
+            <td>Immediate</td>
+          </tr>
+          <tr>
+            <td>Uploaded Images</td>
+            <td>Permanently Deleted</td>
+            <td>Immediate</td>
+          </tr>
+          <tr>
+            <td>Transaction Records</td>
+            <td>Anonymized</td>
+            <td>7 years (tax/legal compliance)</td>
+          </tr>
+          <tr>
+            <td>Support Tickets</td>
+            <td>Anonymized</td>
+            <td>2 years (quality assurance)</td>
+          </tr>
+        </tbody>
+      </table>
+
+      <div class="info-box">
+        <h3>💡 Legal & Financial Data Retention</h3>
+        <p>
+          Due to legal and regulatory requirements, we must retain certain
+          financial records:
+        </p>
+        <ul>
+          <li>
+            <strong>Transaction/Payment Records:</strong> Kept for 7 years in an
+            anonymized form for tax compliance and financial auditing
+          </li>
+          <li>
+            <strong>Support Communications:</strong> Anonymized and retained for
+            up to 2 years for quality assurance purposes
+          </li>
+        </ul>
+        <p>
+          These records are completely anonymized (your personal identifiers are
+          removed) and cannot be linked back to you.
+        </p>
+      </div>
+
+      <h2>Cancelling Active Subscriptions</h2>
+
+      <p>
+        <strong>IMPORTANT:</strong> Deleting your account does not automatically
+        cancel active subscriptions. You must cancel your subscription
+        separately:
+      </p>
+
+      <h3>For Google Play Store (Android):</h3>
+      <ol>
+        <li>Open the Google Play Store app</li>
+        <li>Tap your profile icon → Payments & subscriptions → Subscriptions</li>
+        <li>Find "Ingredly" and tap Cancel subscription</li>
+      </ol>
+
+      <h3>For Apple App Store (iOS):</h3>
+      <ol>
+        <li>Open Settings → [Your Name] → Subscriptions</li>
+        <li>Find "Ingredly" and tap Cancel Subscription</li>
+      </ol>
+
+      <h2>Alternative: Data Deletion Without Account Deletion</h2>
+
+      <p>
+        If you want to keep your account but delete specific data (e.g., meal
+        history, scans), you can do so through the app:
+      </p>
+
+      <ul>
+        <li>
+          <strong>Delete individual meals:</strong> Swipe left on any meal entry
+          → Delete
+        </li>
+        <li>
+          <strong>Clear scan history:</strong> Profile → Settings → Clear Scan
+          History
+        </li>
+        <li>
+          <strong>Update profile data:</strong> Profile → Edit Profile
+        </li>
+      </ul>
+
+      <p>
+        For partial data deletion requests, please contact us at
+        <a href="mailto:support@ingredly.com" class="email-link"
+          >support@ingredly.com</a
+        >
+      </p>
+
+      <h2>Need Help?</h2>
+
+      <div class="contact-box">
+        <h3>📞 Contact Support</h3>
+        <p>
+          If you have questions about account deletion or data privacy, we're
+          here to help:
+        </p>
+        <a href="mailto:support@ingredly.com">Email Support</a>
+        <p style="margin-top: 20px; font-size: 0.9em;">
+          Response time: Within 24-48 hours
+        </p>
+      </div>
+
+      <h2>Privacy & Data Protection</h2>
+
+      <p>
+        For more information about how we handle your data, please review our:
+      </p>
+      <ul>
+        <li>
+          <a href="https://ingredly.com/privacy-policy" target="_blank"
+            >Privacy Policy</a
+          >
+        </li>
+        <li>
+          <a href="https://ingredly.com/terms-of-service" target="_blank"
+            >Terms of Service</a
+          >
+        </li>
+      </ul>
+
+      <p style="margin-top: 40px; text-align: center; color: #7f8c8d;">
+        Last Updated: December 11, 2024
+      </p>
+    </div>
+  </body>
+</html>
